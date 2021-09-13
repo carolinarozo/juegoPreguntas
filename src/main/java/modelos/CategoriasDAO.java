@@ -50,6 +50,31 @@ public class CategoriasDAO {
 
     }
     
+    public ArrayList<Categorias> consultarRegistro(String categoria) {
+
+        String consultaSQL = "SELECT * FROM categorias WHERE categoria=?";
+        ArrayList<Categorias> categorias1 = new ArrayList<Categorias>();
+
+        try {
+
+            this.conSql = this.conectar.getCon();
+            this.ps = this.conSql.prepareStatement(consultaSQL);
+            this.ps.setString(1, categoria);
+            this.rs = this.ps.executeQuery();
+            while (this.rs.next()) {
+
+                Categorias c = new Categorias(Integer.valueOf(this.rs.getString("id")), this.rs.getString("categoria"));
+                categorias1.add(c);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error en el metodo consultar registros" + e.getMessage());
+        }
+
+        return categorias1;
+
+    }
+    
     
     
 }

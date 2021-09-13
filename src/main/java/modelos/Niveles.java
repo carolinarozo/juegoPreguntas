@@ -24,6 +24,12 @@ public class Niveles {
     public Niveles() {
     }
 
+    public Niveles(String nivel) {
+        this.nivel = nivel;
+    }
+    
+    
+
    
     
     

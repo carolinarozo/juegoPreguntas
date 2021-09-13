@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import javax.swing.table.DefaultTableModel;
 import modelos.Categorias;
 import modelos.CategoriasDAO;
 import modelos.Jugador;
@@ -54,9 +55,9 @@ public class ControladorPrincipal implements ActionListener {
         this.vista.jButtonSalir.addActionListener(this);
         this.vistaDatos.jButtonContinuar.addActionListener(this);
         this.vistaDatos.jButtonVolver.addActionListener(this);
-        
+
         this.jugadorDAO = new JugadorDAO();
-        this.categoriaDAO=new CategoriasDAO();
+        this.categoriaDAO = new CategoriasDAO();
         this.cargarComboCategorias();
 
     }
@@ -77,15 +78,12 @@ public class ControladorPrincipal implements ActionListener {
         };
         if (e.getSource() == this.vistaDatos.jButtonContinuar) {
             this.insertarNombreJugador();
-            this.vistaJuegos.setVisible(true);
-            this.vistaDatos.setVisible(false);
-            
+
         };
         if (e.getSource() == this.vistaDatos.jButtonVolver) {
             this.vista.setVisible(true);
             this.vistaDatos.setVisible(false);
         };
-        
 
     }
 
@@ -100,6 +98,8 @@ public class ControladorPrincipal implements ActionListener {
             if (this.jugadorDAO.insertarNombre(v)) {
 
                 JOptionPane.showMessageDialog(this.vista, "Se ha insertado el nombre exitomente!!.", "registro Insertado", INFORMATION_MESSAGE);
+                this.vistaJuegos.setVisible(true);
+                this.vistaDatos.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(this.vista, "No se inserto registro.", "Error", ERROR_MESSAGE);
 
@@ -108,38 +108,51 @@ public class ControladorPrincipal implements ActionListener {
         }
 
     }
-    
-    public void cargarComboCategorias(){
-        
-        DefaultComboBoxModel cb=new DefaultComboBoxModel();
-        ArrayList<Categorias> categorias1=this.categoriaDAO.listarCategorias();
-        
-        categorias1.stream().map(r->r.getCategorias()).distinct().forEach(d->{
-            cb.addElement(d);           
-            
-            
+
+    public void cargarComboCategorias() {
+
+        DefaultComboBoxModel cb = new DefaultComboBoxModel();
+        ArrayList<Categorias> categorias1 = this.categoriaDAO.listarCategorias();
+
+        categorias1.stream().map(r -> r.getCategorias()).distinct().forEach(d -> {
+            cb.addElement(d);
+
         });
-        
+
         this.vistaDatos.jComboBoxCategorias.setModel(cb);
-        
-        
-        
-    }  
-            
-        
-        }
-        
-        
-       
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
+    }
 
+    public void cargarPreguntas() {
+
+        String nombreCategoria = (String) this.vistaDatos.jComboBoxCategorias.getSelectedItem();
+        ArrayList<Categorias> categorias1 = this.categoriaDAO.consultarRegistro(nombreCategoria);
+
+//        DefaultTableModel modelo = new DefaultTableModel(
+//                new Object[][]{},
+//                new String[]{
+//                    "Fecha", "Documento", "Nombres", "Apellidos"
+//                }
+//        ) {
+//            boolean[] canEdit = new boolean[]{
+//                false, false, false, false
+//            };
+//
+//            public boolean isCellEditable(int rowIndex, int columnIndex) {
+//                return canEdit[columnIndex];
+//            }
+//        };
+//
+//        Iterator<Visitante> iv = visitantes.iterator();
+//        while (iv.hasNext()) {
+//
+//            Visitante v = iv.next();
+//
+//            modelo.addRow(new String[]{v.getFechaIngreso(), v.getDocumento(), v.getNombres(), v.getApellidos()});
+//
+//        }
+//
+//        this.vista.tbRelacionInvitados.setModel(modelo);
+    }
+
+}

@@ -30,6 +30,13 @@ public class Categorias {
 
     public Categorias() {
     }
+
+    public Categorias(int id, String categorias) {
+        this.id = id;
+        this.categorias = categorias;
+    }
+    
+    
     
     
     
