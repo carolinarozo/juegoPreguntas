@@ -23,7 +23,7 @@ public class Conexion {
                 String rutaActual=System.getProperty("user.dir");
                 
                 Class.forName("org.sqlite.JDBC");
-                this.con=DriverManager.getConnection("jdbc:sqlite:"+rutaActual+"\\preguntasRespuestas");
+                this.con=DriverManager.getConnection("jdbc:sqlite:"+rutaActual+"\\preguntasRespuestas.db");
                 
             } catch (Exception e) {
                 

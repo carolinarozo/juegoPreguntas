@@ -7,7 +7,9 @@ package com.mcrs.juegopreguntasrespuestas;
 
 import controladores.ControladorPrincipal;
 import vistas.VistaDatosJugador;
+import vistas.VistaJuego;
 import vistas.VistaPrincipal;
+import vistas.VistaPuntajes;
 
 /**
  *
@@ -21,7 +23,10 @@ public class Aplicacion {
     public static void main(String[] args) {
        VistaPrincipal vista=new VistaPrincipal();
        VistaDatosJugador vista2=new VistaDatosJugador();
-       ControladorPrincipal cp=new ControladorPrincipal(vista,vista2); 
+       VistaJuego vista3=new VistaJuego();
+       VistaPuntajes vista4=new VistaPuntajes();
+       
+       ControladorPrincipal cp=new ControladorPrincipal(vista,vista2,vista3,vista4); 
        vista.setVisible(true);
     }
     
