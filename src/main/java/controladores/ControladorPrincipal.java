@@ -128,31 +128,7 @@ public class ControladorPrincipal implements ActionListener {
         String nombreCategoria = (String) this.vistaDatos.jComboBoxCategorias.getSelectedItem();
         ArrayList<Categorias> categorias1 = this.categoriaDAO.consultarRegistro(nombreCategoria);
 
-//        DefaultTableModel modelo = new DefaultTableModel(
-//                new Object[][]{},
-//                new String[]{
-//                    "Fecha", "Documento", "Nombres", "Apellidos"
-//                }
-//        ) {
-//            boolean[] canEdit = new boolean[]{
-//                false, false, false, false
-//            };
-//
-//            public boolean isCellEditable(int rowIndex, int columnIndex) {
-//                return canEdit[columnIndex];
-//            }
-//        };
-//
-//        Iterator<Visitante> iv = visitantes.iterator();
-//        while (iv.hasNext()) {
-//
-//            Visitante v = iv.next();
-//
-//            modelo.addRow(new String[]{v.getFechaIngreso(), v.getDocumento(), v.getNombres(), v.getApellidos()});
-//
-//        }
-//
-//        this.vista.tbRelacionInvitados.setModel(modelo);
+//        
     }
 
 }
